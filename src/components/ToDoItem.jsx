@@ -3,7 +3,7 @@ import React, { useState } from "react";
 function ToDoItem(props) {
     const [isDone, setIsDone] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
-    const [inputText, setInputText] = useState(props.text);
+    const [inputText, setInputText] = useState(props.note.text);
 
     function handleChange(event) {
         const newValue = event.target.value;
@@ -38,8 +38,9 @@ function ToDoItem(props) {
                 <div
                     onClick={handleClick}
                     onDoubleClick={() => {props.onDelete(props.idx)}}
+                    title={"Edited On: " + props.note.editionDate}
                 >
-                    {props.text}
+                    {props.note.text}
                 </div>
                 <button onClick={() => setIsEditing(true)}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-pencil" viewBox="0 0 16 16">

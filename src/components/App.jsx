@@ -8,7 +8,13 @@ function App() {
   function addItem(inputText) {
     if (inputText === "") return;
     setItems(prevItems => {
-      return [...prevItems, inputText];
+      return [
+        ...prevItems, 
+        {
+          text: inputText,
+          editionDate: new Date()
+        }
+      ];
     });
   }
 
@@ -16,7 +22,10 @@ function App() {
     setItems(prevItems => {
       return prevItems.map((item, index) => {
         if (index !== idx) return item;
-        else return newText
+        else return {
+          text: newText,
+          editionDate: new Date()
+        }
       })
     })
   }
@@ -43,7 +52,7 @@ function App() {
                 <ToDoItem 
                   key={index}
                   idx={index}
-                  text={toDoItem} 
+                  note={toDoItem} 
                   onDelete={deleteItem}
                   onEdit={updateItem}
                 />
